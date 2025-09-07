@@ -85,6 +85,20 @@ export async function POST(request: Request) {
 			);
 		}
 
+		if (foto_produk_files.length < 3) {
+			return NextResponse.json(
+				{ message: "Minimum 3 product images are required" },
+				{ status: 400 }
+			);
+		}
+
+		if (foto_produk_files.length > 5) {
+			return NextResponse.json(
+				{ message: "Maximum 5 product images are allowed" },
+				{ status: 400 }
+			);
+		}
+
 		// Cek apakah kode produk sudah ada
 		const existingProduct = await prisma.produk.findUnique({
 			where: {

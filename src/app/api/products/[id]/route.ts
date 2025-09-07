@@ -158,6 +158,29 @@ export async function PUT(
 		
 		// Combine existing images with new files
 		finalImagePaths = [...existing_image_produk, ...newFilePaths];
+		
+		// Validate total image count
+		if (finalImagePaths.length < 3) {
+			// Clean up newly uploaded files
+			for (const path of newFilePaths) {
+				await productFileStorage.deleteFile(path);
+			}
+			return NextResponse.json(
+				{ message: "Minimum 3 product images are required" },
+				{ status: 400 }
+			);
+		}
+		
+		if (finalImagePaths.length > 5) {
+			// Clean up newly uploaded files
+			for (const path of newFilePaths) {
+				await productFileStorage.deleteFile(path);
+			}
+			return NextResponse.json(
+				{ message: "Maximum 5 product images are allowed" },
+				{ status: 400 }
+			);
+		}
 
 		// Update produk
 		const updateData: any = {};

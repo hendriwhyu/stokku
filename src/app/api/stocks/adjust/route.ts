@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     }
 
     // Gunakan transaction untuk memastikan atomicity
-    const result = await prisma.$transaction(async (tx: typeof prisma) => {
+    const result = await prisma.$transaction(async (tx) => {
       // Cek apakah produk ada
       const product = await tx.produk.findUnique({
         where: { id_produk: body.id_produk },

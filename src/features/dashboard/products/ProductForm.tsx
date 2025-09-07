@@ -31,8 +31,8 @@ const UploadButton = () => {
 				Click or drag file to this area to upload
 			</p>
 			<p className="ant-upload-hint">
-				Support for a single or bulk upload. Strictly prohibited from uploading
-				company data or other banned files.
+				Upload 3-5 images per product. Drag multiple files or click to select.
+				Only image files are allowed (JPG, PNG, JPEG).
 			</p>
 		</div>
 	);
@@ -198,7 +198,18 @@ const ProductForm = ({ product, onCancel, onSuccess }: ProductFormProps) => {
 				name="foto_produk"
 				label="Foto Produk"
 				rules={[
-					{ required: !product, message: "Foto produk tidak boleh kosong" },
+					{ 
+						validator: (_, value) => {
+							const totalImages = fileList.length;
+							if (totalImages < 3) {
+								return Promise.reject(new Error('Minimal 3 gambar diperlukan'));
+							}
+							if (totalImages > 5) {
+								return Promise.reject(new Error('Maksimal 5 gambar diizinkan'));
+							}
+							return Promise.resolve();
+						}
+					}
 				]}
 			>
 				<Dragger
@@ -206,7 +217,7 @@ const ProductForm = ({ product, onCancel, onSuccess }: ProductFormProps) => {
 					fileList={fileList}
 					onPreview={handlePreview}
 					onChange={handleFileChange}
-					maxCount={3}
+					maxCount={5}
 					multiple
 				>
 					<UploadButton />
