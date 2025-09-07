@@ -195,7 +195,7 @@ const Inventories: React.FC = () => {
 			) : (
 				<Row gutter={[16, 16]} className="mt-6">
 					{filteredProducts.map((product) => (
-						<Col key={product.id_produk} xs={24} sm={12} lg={6} xl={4}>
+						<Col key={product.id_produk} xs={24} sm={12} lg={8}>
 							<ProductCard
 								product={product}
 								onStockAdjustment={handleStockAdjustment}
