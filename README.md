@@ -34,7 +34,6 @@ Stokku is a modern web-based inventory management solution that helps businesses
 - **TypeScript**: Type-safe development
 - **Ant Design**: Enterprise-class UI design language
 - **Tailwind CSS**: Utility-first CSS framework
-- **Zustand**: Lightweight state management
 - **TanStack Query**: Data fetching and caching
 
 ### Backend
