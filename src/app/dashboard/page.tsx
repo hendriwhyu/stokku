@@ -5,7 +5,7 @@ import Dashboard from "@/features/dashboard";
  * Dashboard page
  *
  */
-const DashboardPage= () => {
+const DashboardPage = () => {
 	return <Dashboard />;
 };
 

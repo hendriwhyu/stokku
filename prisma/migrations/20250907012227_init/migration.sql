@@ -8,6 +8,8 @@ CREATE TABLE "public"."tbl_user" (
     "is_active" BOOLEAN NOT NULL DEFAULT true,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
+    "auth_provider" VARCHAR(50),
+    "auth_id" VARCHAR(255),
     "last_login" TIMESTAMP(3),
 
     CONSTRAINT "tbl_user_pkey" PRIMARY KEY ("id_user")
@@ -48,6 +50,9 @@ CREATE UNIQUE INDEX "tbl_user_email_key" ON "public"."tbl_user"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "tbl_produk_kode_produk_key" ON "public"."tbl_produk"("kode_produk");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "tbl_stok_id_produk_key" ON "public"."tbl_stok"("id_produk");
 
 -- AddForeignKey
 ALTER TABLE "public"."tbl_produk" ADD CONSTRAINT "tbl_produk_id_kategori_fkey" FOREIGN KEY ("id_kategori") REFERENCES "public"."tbl_kategori"("id_kategori") ON DELETE RESTRICT ON UPDATE CASCADE;

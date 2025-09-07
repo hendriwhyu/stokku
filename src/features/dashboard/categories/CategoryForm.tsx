@@ -1,51 +1,54 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, Input, Button, message } from "antd";
 import {
 	useFetchCreateCategory,
 	useFetchUpdateCategory,
 } from "@/services/categories";
 import type { Category } from "@/types/category";
+import useCategories from "../hooks/useCategories";
 
 interface CategoryFormProps {
 	category: Category | null;
-	onSuccess: () => void;
 	onCancel: () => void;
+	onSuccess: () => void;
 }
 
-const CategoryForm = ({ category, onSuccess, onCancel }: CategoryFormProps) => {
-	const [form] = Form.useForm();
-	const [isSubmitting, setIsSubmitting] = useState(false);
-
+const CategoryForm = ({ category, onCancel, onSuccess }: CategoryFormProps) => {
+	const { form } = useCategories();
 	const { mutateCreateCategory, isPendingCreateCategory } =
 		useFetchCreateCategory();
 	const { mutateUpdateCategory, isPendingUpdateCategory } =
 		useFetchUpdateCategory();
 
-	const isLoading =
-		isPendingCreateCategory || isPendingUpdateCategory || isSubmitting;
-
-	const handleSubmit = async (values: Category) => {
+	const handleSubmit = async (value: Category) => {
 		try {
-			setIsSubmitting(true);
-
 			if (category) {
 				await mutateUpdateCategory({
 					id: category.id_kategori,
-					body: values,
+					body: value,
 				});
 			} else {
-				await mutateCreateCategory(values);
+				await mutateCreateCategory(value);
 			}
 
 			onSuccess();
 		} catch (error) {
 			message.error("Gagal menyimpan kategori");
-		} finally {
-			setIsSubmitting(false);
 		}
 	};
+
+	const isLoading =
+		isPendingCreateCategory || isPendingUpdateCategory;
+
+	useEffect(() => {
+		if (category) {
+			form.setFieldsValue({ nama_kategori: category.nama_kategori });
+		} else {
+			form.resetFields();
+		}
+	}, [category, form]);
 
 	return (
 		<Form

@@ -3,7 +3,11 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
 	try {
-		const categories = await prisma.kategori.findMany();
+		const categories = await prisma.kategori.findMany({
+			orderBy: {
+				id_kategori: "asc",
+			},
+		});
 
 		if (!categories) {
 			return NextResponse.json(
@@ -23,12 +27,24 @@ export async function GET() {
 
 export async function POST(request: Request) {
 	try {
-		const body = await request.json();
-		
-		// Validate required fields
+		const body: { nama_kategori: string } = await request.json();
+
 		if (!body.nama_kategori || body.nama_kategori.trim() === "") {
 			return NextResponse.json(
 				{ message: "Category name is required" },
+				{ status: 400 }
+			);
+		}
+
+		const existingCategory = await prisma.kategori.findFirst({
+			where: {
+				nama_kategori: body.nama_kategori.trim(),
+			},
+		})
+
+		if (existingCategory) {
+			return NextResponse.json(
+				{ message: "Category already exists" },
 				{ status: 400 }
 			);
 		}

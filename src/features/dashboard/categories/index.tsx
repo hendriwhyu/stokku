@@ -1,80 +1,33 @@
 "use client";
 
-import { useState } from "react";
-import {
-	useFetchDeleteCategory,
-	useFetchListCategories,
-} from "@/services/categories";
-import { Button, Input, Table, Space, Modal, message } from "antd";
+import { useFetchListCategories } from "@/services/categories";
+import { Button, Input, Table, Space, Modal, Card, Typography } from "antd";
 import {
 	SearchOutlined,
 	PlusOutlined,
 	EditOutlined,
 	DeleteOutlined,
 } from "@ant-design/icons";
-import CategoryForm from "@/features/dashboard/components/CategoryForm";
+import CategoryForm from "@/features/dashboard/categories/CategoryForm";
 import type { TableProps } from "antd";
 import { Category } from "@/types/category";
+import useCategories from "../hooks/useCategories";
 
 const Categories = () => {
-	const [searchText, setSearchText] = useState("");
-	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [editingCategory, setEditingCategory] = useState<Category | null>(null);
-
 	const {
-		dataCategories: categories,
-		isPendingCategories,
-		refetch,
-	} = useFetchListCategories();
+		isModalOpen,
+		searchText,
+		editingCategory,
+		filteredCategories,
+		handleSearch,
+		handleOpenCreateModal,
+		handleOpenEditModal,
+		handleCloseModal,
+		handleSuccessForm,
+		handleDeleteCategory,
+	} = useCategories();
 
-    const { mutateDeleteCategory } = useFetchDeleteCategory();
-
-	// Filter categories based on search text
-	const filteredCategories = categories?.filter((category: Category) =>
-		category.nama_kategori.toLowerCase().includes(searchText.toLowerCase())
-	);
-
-	const handleOpenCreateModal = () => {
-		setEditingCategory(null);
-		setIsModalOpen(true);
-	};
-
-	const handleOpenEditModal = (category: Category) => {
-		setEditingCategory(category);
-		setIsModalOpen(true);
-	};
-
-	const handleCloseModal = () => {
-		setIsModalOpen(false);
-		setEditingCategory(null);
-	};
-
-	const handleFormSuccess = () => {
-		refetch();
-		message.success(
-			editingCategory
-				? "Category berhasil diperbarui"
-				: "Category berhasil ditambahkan"
-		);
-		handleCloseModal();
-	};
-
-	const onDeleteCategory = async (category: Category) => {
-		try {
-			await mutateDeleteCategory({ id: category.id_kategori });
-			refetch();
-			message.success("Category berhasil dihapus");
-		} catch (error: any) {
-			console.log(error);
-			if (error.response?.status === 400) {
-				message.error(
-					"Category tidak dapat dihapus karena masih terkait dengan produk"
-				);
-			} else {
-				message.error("Gagal menghapus Category");
-			}
-		}
-	};
+	const { isPendingCategories } = useFetchListCategories();
 
 	const columns: TableProps<Category>["columns"] = [
 		{
@@ -114,25 +67,15 @@ const Categories = () => {
 		},
 	];
 
-	const handleDeleteCategory = (category: Category) => {
-		Modal.confirm({
-			title: "Konfirmasi Hapus",
-			content: `Apakah Anda yakin ingin menghapus Category "${category.nama_kategori}"?`,
-			okText: "Ya",
-			okType: "danger",
-			cancelText: "Tidak",
-			onOk: () => onDeleteCategory(category),
-		});
-	};
-
 	return (
-		<div className="p-6">
-			<div className="flex justify-between items-center mb-6">
-				<h1 className="text-2xl font-bold">Manajemen Category</h1>
+		<Card className="m-4! md:m-6!">
+			<div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+				<Typography.Title level={3}>Manajemen Category</Typography.Title>
 				<Button
 					type="primary"
 					icon={<PlusOutlined />}
 					onClick={handleOpenCreateModal}
+					size="large"
 				>
 					Tambah Category
 				</Button>
@@ -143,18 +86,27 @@ const Categories = () => {
 					placeholder="Cari Category..."
 					prefix={<SearchOutlined />}
 					value={searchText}
-					onChange={(e) => setSearchText(e.target.value)}
-					style={{ width: 300 }}
+					onChange={handleSearch}
+					className="w-full md:w-96"
+					size="large"
 				/>
 			</div>
 
 			<Table
 				columns={columns}
 				dataSource={filteredCategories}
-				rowKey="id_Category"
+				rowKey="id_kategori"
 				loading={isPendingCategories}
-				pagination={{ pageSize: 10 }}
+				pagination={{
+					pageSize: 10,
+					showSizeChanger: true,
+					showQuickJumper: true,
+					showTotal: (total) => `Total ${total} kategori`,
+					responsive: true,
+				}}
 				bordered
+				scroll={{ x: 'max-content' }}
+				size="middle"
 			/>
 
 			<Modal
@@ -162,14 +114,13 @@ const Categories = () => {
 				open={isModalOpen}
 				onCancel={handleCloseModal}
 				footer={null}
+				width="90%"
+				style={{ maxWidth: 600 }}
+				destroyOnHidden
 			>
-				<CategoryForm
-					category={editingCategory}
-					onSuccess={handleFormSuccess}
-					onCancel={handleCloseModal}
-				/>
+				<CategoryForm category={editingCategory} onCancel={handleCloseModal} onSuccess={handleSuccessForm} />
 			</Modal>
-		</div>
+		</Card>
 	);
 };
 

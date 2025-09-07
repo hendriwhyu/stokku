@@ -1,3 +1,4 @@
+import { Category } from "@/types/category";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
@@ -6,7 +7,7 @@ const useFetchListCategories = () => {
 
 	const queryKey = [CATEGORIES_URL];
 
-	const fetch = async () => {
+	const fetch = async (): Promise<Category[]> => {
 		const { data } = await axios.get(CATEGORIES_URL);
 		return data;
 	};

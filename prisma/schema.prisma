@@ -19,12 +19,10 @@ model User {
   nama_user     String    @db.VarChar(200) @map("nama_user")
   email         String    @unique @db.VarChar(255) @map("email")
   password      String?   @db.VarChar(255) @map("password")
-  role          String    @default("user") @db.VarChar(50) @map("role") // user, admin
+  role          String    @default("user") @db.VarChar(50) @map("role")
   is_active     Boolean   @default(true) @map("is_active")
   created_at    DateTime  @default(now()) @map("created_at")
   updated_at    DateTime  @updatedAt @map("updated_at")
-  auth_provider String?   @db.VarChar(50) @map("auth_provider") // google, github, null for local
-  auth_id       String?   @db.VarChar(255) @map("auth_id") // ID from provider
   last_login    DateTime? @map("last_login")
   
   @@map("tbl_user")
@@ -32,7 +30,7 @@ model User {
 
 model Kategori {
   id_kategori   Int     @id @default(autoincrement()) @map("id_kategori")
-  nama_kategori String  @db.VarChar(200) @map("nama_kategori")
+  nama_kategori String  @unique @db.VarChar(200) @map("nama_kategori")
   
   Produk        Produk[] // One-to-many: Satu kategori bisa memiliki banyak produk
 
@@ -44,23 +42,22 @@ model Produk {
   id_kategori    Int      @map("id_kategori")
   nama_produk    String   @db.VarChar(200) @map("nama_produk")
   kode_produk    String   @db.VarChar(50) @unique @map("kode_produk")
-  foto_produk    String   @db.VarChar(50) @map("foto_produk")
+  foto_produk    Json?    @map("foto_produk")
   tgl_register   DateTime @db.Date @map("tgl_register")
 
   kategori       Kategori @relation(fields: [id_kategori], references: [id_kategori]) // Relasi many-to-one
-  
-  Stok           Stok[] // One-to-many: Satu produk bisa memiliki banyak entri stok
+
+  stok           Stok?
 
   @@map("tbl_produk")
 }
 
 model Stok {
   id_stok        Int      @id @default(autoincrement()) @map("id_stok")
-  id_produk      Int      @map("id_produk")
+  id_produk      Int      @unique @map("id_produk")
   jumlah_barang  Int      @map("jumlah_barang")
   tgl_update     DateTime @db.Date @map("tgl_update")
 
-  produk         Produk   @relation(fields: [id_produk], references: [id_produk]) // Relasi many-to-one
-  
+  produk Produk @relation(fields: [id_produk], references: [id_produk])
   @@map("tbl_stok")
 }

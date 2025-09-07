@@ -15,24 +15,22 @@ datasource db {
 }
 
 model User {
-  id_user       Int       @id @default(autoincrement()) @map("id_user")
-  nama_user     String    @map("nama_user") @db.VarChar(200)
-  email         String    @unique @map("email") @db.VarChar(255)
-  password      String?   @map("password") @db.VarChar(255)
-  role          String    @default("user") @map("role") @db.VarChar(50) // user, admin
-  is_active     Boolean   @default(true) @map("is_active")
-  created_at    DateTime  @default(now()) @map("created_at")
-  updated_at    DateTime  @updatedAt @map("updated_at")
-  auth_provider String?   @map("auth_provider") @db.VarChar(50) // google, github, null for local
-  auth_id       String?   @map("auth_id") @db.VarChar(255) // ID from provider
-  last_login    DateTime? @map("last_login")
+  id_user    Int       @id @default(autoincrement()) @map("id_user")
+  nama_user  String    @map("nama_user") @db.VarChar(200)
+  email      String    @unique @map("email") @db.VarChar(255)
+  password   String?   @map("password") @db.VarChar(255)
+  role       String    @default("user") @map("role") @db.VarChar(50)
+  is_active  Boolean   @default(true) @map("is_active")
+  created_at DateTime  @default(now()) @map("created_at")
+  updated_at DateTime  @updatedAt @map("updated_at")
+  last_login DateTime? @map("last_login")
 
   @@map("tbl_user")
 }
 
 model Kategori {
   id_kategori   Int    @id @default(autoincrement()) @map("id_kategori")
-  nama_kategori String @map("nama_kategori") @db.VarChar(200)
+  nama_kategori String @unique @map("nama_kategori") @db.VarChar(200)
 
   Produk Produk[] // One-to-many: Satu kategori bisa memiliki banyak produk
 
@@ -44,23 +42,23 @@ model Produk {
   id_kategori  Int      @map("id_kategori")
   nama_produk  String   @map("nama_produk") @db.VarChar(200)
   kode_produk  String   @unique @map("kode_produk") @db.VarChar(50)
-  foto_produk  String   @map("foto_produk") @db.VarChar(50)
+  foto_produk  Json?    @map("foto_produk")
   tgl_register DateTime @map("tgl_register") @db.Date
 
   kategori Kategori @relation(fields: [id_kategori], references: [id_kategori]) // Relasi many-to-one
 
-  Stok Stok[] // One-to-many: Satu produk bisa memiliki banyak entri stok
+  stok Stok?
 
   @@map("tbl_produk")
 }
 
 model Stok {
   id_stok       Int      @id @default(autoincrement()) @map("id_stok")
-  id_produk     Int      @map("id_produk")
+  id_produk     Int      @unique @map("id_produk")
   jumlah_barang Int      @map("jumlah_barang")
   tgl_update    DateTime @map("tgl_update") @db.Date
 
-  produk Produk @relation(fields: [id_produk], references: [id_produk]) // Relasi many-to-one
+  produk Produk @relation(fields: [id_produk], references: [id_produk])
 
   @@map("tbl_stok")
 }

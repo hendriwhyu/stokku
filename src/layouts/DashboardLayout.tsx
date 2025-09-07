@@ -24,27 +24,24 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 }) => {
 	const [collapsed, setCollapsed] = useState(false);
 
+	const onCollapsed = () => {
+		setCollapsed(!collapsed);
+	}
+
 	return (
 		<Layout style={{ minHeight: "100vh" }}>
 			<Sidebar
 				collapsed={collapsed}
-				onCollapse={(value) => setCollapsed(value)}
 			/>
 			<Layout
 				style={{ marginLeft: collapsed ? 80 : 256, transition: "all 0.2s" }}
 			>
-				<Header title={title} />
-				<Content
-					style={{
-						margin: "24px 16px",
-						padding: 24,
-						background: "#fff",
-						borderRadius: 4,
-						minHeight: 280,
-					}}
-				>
-					{children}
-				</Content>
+				<Header
+					collapsed={collapsed}
+					onCollapsed={onCollapsed}
+					title={title}
+				/>
+				<Content>{children}</Content>
 			</Layout>
 		</Layout>
 	);

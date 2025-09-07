@@ -9,7 +9,7 @@ import HomeLayout from "@/layouts/HomeLayout";
 
 const HomePage = () => {
   return (
-    <HomeLayout title="Stokku - Inventory & Listing Tools">
+    <HomeLayout title="Stokku - Warehouse Inventory Management">
       <Hero />
       <Features />
       <Showcase />

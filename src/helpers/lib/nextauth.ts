@@ -56,7 +56,7 @@ export const authOptions: NextAuthOptions = {
 
 				return {
 					id: user.id_user.toString(),
-					id_user: user.id_user,
+					id_user: user.id_user.toString(),
 					nama_user: user.nama_user,
 					email: user.email,
 					role: user.role,
@@ -73,7 +73,7 @@ export const authOptions: NextAuthOptions = {
 		async jwt({ token, user }) {
 			// Add custom user data to the token
 			if (user) {
-				token.id_user = user.id_user;
+				token.id_user = user.id_user?.toString();
 				token.nama_user = user.nama_user;
 				token.email = user.email;
 				token.role = user.role;
@@ -81,7 +81,6 @@ export const authOptions: NextAuthOptions = {
 			return token;
 		},
 		async session({ session, token }) {
-			console.log(session, token);
 			// Add custom token data to the session
 			if (session.user) {
 				session.user.id_user = token.id_user as string;

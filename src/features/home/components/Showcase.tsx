@@ -1,8 +1,6 @@
 import React from 'react';
 import { Typography, Row, Col } from 'antd';
 
-const { Title, Paragraph } = Typography;
-
 /**
  * Showcase/Overview section – mirrors the reference block with headline and UI preview
  */
@@ -11,12 +9,12 @@ const Showcase: React.FC = () => {
     <section id="overview" className="py-16 px-4 bg-white">
       <div className="container mx-auto">
         <div className="text-center mb-8">
-          <Title level={2} className="!mb-2">Maximize Your Profits and</Title>
-          <Title level={3} className="!mt-0 text-purple-600">Control Inventory with Ease</Title>
-          <Paragraph className="text-gray-600 max-w-3xl mx-auto">
-            Achieve profitability and efficient inventory management on Amazon and eBay with
-            dynamic pricing and automated inventory tracking.
-          </Paragraph>
+          <Typography.Title level={2} className="!mb-2">Optimize Your Warehouse</Typography.Title>
+          <Typography.Title level={3} className="!mt-0 text-purple-600">Operations with Ease</Typography.Title>
+          <Typography.Paragraph className="text-gray-600 max-w-3xl mx-auto">
+            Achieve efficient warehouse management with real-time inventory tracking, 
+            automated alerts, and comprehensive analytics to streamline your operations.
+          </Typography.Paragraph>
         </div>
 
         <Row justify="center">

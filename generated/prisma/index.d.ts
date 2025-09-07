@@ -1156,37 +1156,6 @@ export namespace Prisma {
 
 
   /**
-   * Count Type ProdukCountOutputType
-   */
-
-  export type ProdukCountOutputType = {
-    Stok: number
-  }
-
-  export type ProdukCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Stok?: boolean | ProdukCountOutputTypeCountStokArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * ProdukCountOutputType without action
-   */
-  export type ProdukCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ProdukCountOutputType
-     */
-    select?: ProdukCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * ProdukCountOutputType without action
-   */
-  export type ProdukCountOutputTypeCountStokArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StokWhereInput
-  }
-
-
-  /**
    * Models
    */
 
@@ -1219,8 +1188,6 @@ export namespace Prisma {
     is_active: boolean | null
     created_at: Date | null
     updated_at: Date | null
-    auth_provider: string | null
-    auth_id: string | null
     last_login: Date | null
   }
 
@@ -1233,8 +1200,6 @@ export namespace Prisma {
     is_active: boolean | null
     created_at: Date | null
     updated_at: Date | null
-    auth_provider: string | null
-    auth_id: string | null
     last_login: Date | null
   }
 
@@ -1247,8 +1212,6 @@ export namespace Prisma {
     is_active: number
     created_at: number
     updated_at: number
-    auth_provider: number
-    auth_id: number
     last_login: number
     _all: number
   }
@@ -1271,8 +1234,6 @@ export namespace Prisma {
     is_active?: true
     created_at?: true
     updated_at?: true
-    auth_provider?: true
-    auth_id?: true
     last_login?: true
   }
 
@@ -1285,8 +1246,6 @@ export namespace Prisma {
     is_active?: true
     created_at?: true
     updated_at?: true
-    auth_provider?: true
-    auth_id?: true
     last_login?: true
   }
 
@@ -1299,8 +1258,6 @@ export namespace Prisma {
     is_active?: true
     created_at?: true
     updated_at?: true
-    auth_provider?: true
-    auth_id?: true
     last_login?: true
     _all?: true
   }
@@ -1400,8 +1357,6 @@ export namespace Prisma {
     is_active: boolean
     created_at: Date
     updated_at: Date
-    auth_provider: string | null
-    auth_id: string | null
     last_login: Date | null
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
@@ -1433,8 +1388,6 @@ export namespace Prisma {
     is_active?: boolean
     created_at?: boolean
     updated_at?: boolean
-    auth_provider?: boolean
-    auth_id?: boolean
     last_login?: boolean
   }, ExtArgs["result"]["user"]>
 
@@ -1447,8 +1400,6 @@ export namespace Prisma {
     is_active?: boolean
     created_at?: boolean
     updated_at?: boolean
-    auth_provider?: boolean
-    auth_id?: boolean
     last_login?: boolean
   }, ExtArgs["result"]["user"]>
 
@@ -1461,8 +1412,6 @@ export namespace Prisma {
     is_active?: boolean
     created_at?: boolean
     updated_at?: boolean
-    auth_provider?: boolean
-    auth_id?: boolean
     last_login?: boolean
   }, ExtArgs["result"]["user"]>
 
@@ -1475,12 +1424,10 @@ export namespace Prisma {
     is_active?: boolean
     created_at?: boolean
     updated_at?: boolean
-    auth_provider?: boolean
-    auth_id?: boolean
     last_login?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_user" | "nama_user" | "email" | "password" | "role" | "is_active" | "created_at" | "updated_at" | "auth_provider" | "auth_id" | "last_login", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_user" | "nama_user" | "email" | "password" | "role" | "is_active" | "created_at" | "updated_at" | "last_login", ExtArgs["result"]["user"]>
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
@@ -1494,8 +1441,6 @@ export namespace Prisma {
       is_active: boolean
       created_at: Date
       updated_at: Date
-      auth_provider: string | null
-      auth_id: string | null
       last_login: Date | null
     }, ExtArgs["result"]["user"]>
     composites: {}
@@ -1928,8 +1873,6 @@ export namespace Prisma {
     readonly is_active: FieldRef<"User", 'Boolean'>
     readonly created_at: FieldRef<"User", 'DateTime'>
     readonly updated_at: FieldRef<"User", 'DateTime'>
-    readonly auth_provider: FieldRef<"User", 'String'>
-    readonly auth_id: FieldRef<"User", 'String'>
     readonly last_login: FieldRef<"User", 'DateTime'>
   }
     
@@ -3389,7 +3332,6 @@ export namespace Prisma {
     id_kategori: number | null
     nama_produk: string | null
     kode_produk: string | null
-    foto_produk: string | null
     tgl_register: Date | null
   }
 
@@ -3398,7 +3340,6 @@ export namespace Prisma {
     id_kategori: number | null
     nama_produk: string | null
     kode_produk: string | null
-    foto_produk: string | null
     tgl_register: Date | null
   }
 
@@ -3428,7 +3369,6 @@ export namespace Prisma {
     id_kategori?: true
     nama_produk?: true
     kode_produk?: true
-    foto_produk?: true
     tgl_register?: true
   }
 
@@ -3437,7 +3377,6 @@ export namespace Prisma {
     id_kategori?: true
     nama_produk?: true
     kode_produk?: true
-    foto_produk?: true
     tgl_register?: true
   }
 
@@ -3542,7 +3481,7 @@ export namespace Prisma {
     id_kategori: number
     nama_produk: string
     kode_produk: string
-    foto_produk: string
+    foto_produk: JsonValue | null
     tgl_register: Date
     _count: ProdukCountAggregateOutputType | null
     _avg: ProdukAvgAggregateOutputType | null
@@ -3573,8 +3512,7 @@ export namespace Prisma {
     foto_produk?: boolean
     tgl_register?: boolean
     kategori?: boolean | KategoriDefaultArgs<ExtArgs>
-    Stok?: boolean | Produk$StokArgs<ExtArgs>
-    _count?: boolean | ProdukCountOutputTypeDefaultArgs<ExtArgs>
+    stok?: boolean | Produk$stokArgs<ExtArgs>
   }, ExtArgs["result"]["produk"]>
 
   export type ProdukSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3609,8 +3547,7 @@ export namespace Prisma {
   export type ProdukOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_produk" | "id_kategori" | "nama_produk" | "kode_produk" | "foto_produk" | "tgl_register", ExtArgs["result"]["produk"]>
   export type ProdukInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     kategori?: boolean | KategoriDefaultArgs<ExtArgs>
-    Stok?: boolean | Produk$StokArgs<ExtArgs>
-    _count?: boolean | ProdukCountOutputTypeDefaultArgs<ExtArgs>
+    stok?: boolean | Produk$stokArgs<ExtArgs>
   }
   export type ProdukIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     kategori?: boolean | KategoriDefaultArgs<ExtArgs>
@@ -3623,14 +3560,14 @@ export namespace Prisma {
     name: "Produk"
     objects: {
       kategori: Prisma.$KategoriPayload<ExtArgs>
-      Stok: Prisma.$StokPayload<ExtArgs>[]
+      stok: Prisma.$StokPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id_produk: number
       id_kategori: number
       nama_produk: string
       kode_produk: string
-      foto_produk: string
+      foto_produk: Prisma.JsonValue | null
       tgl_register: Date
     }, ExtArgs["result"]["produk"]>
     composites: {}
@@ -4027,7 +3964,7 @@ export namespace Prisma {
   export interface Prisma__ProdukClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     kategori<T extends KategoriDefaultArgs<ExtArgs> = {}>(args?: Subset<T, KategoriDefaultArgs<ExtArgs>>): Prisma__KategoriClient<$Result.GetResult<Prisma.$KategoriPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Stok<T extends Produk$StokArgs<ExtArgs> = {}>(args?: Subset<T, Produk$StokArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StokPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    stok<T extends Produk$stokArgs<ExtArgs> = {}>(args?: Subset<T, Produk$stokArgs<ExtArgs>>): Prisma__StokClient<$Result.GetResult<Prisma.$StokPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4061,7 +3998,7 @@ export namespace Prisma {
     readonly id_kategori: FieldRef<"Produk", 'Int'>
     readonly nama_produk: FieldRef<"Produk", 'String'>
     readonly kode_produk: FieldRef<"Produk", 'String'>
-    readonly foto_produk: FieldRef<"Produk", 'String'>
+    readonly foto_produk: FieldRef<"Produk", 'Json'>
     readonly tgl_register: FieldRef<"Produk", 'DateTime'>
   }
     
@@ -4459,9 +4396,9 @@ export namespace Prisma {
   }
 
   /**
-   * Produk.Stok
+   * Produk.stok
    */
-  export type Produk$StokArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Produk$stokArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Stok
      */
@@ -4475,11 +4412,6 @@ export namespace Prisma {
      */
     include?: StokInclude<ExtArgs> | null
     where?: StokWhereInput
-    orderBy?: StokOrderByWithRelationInput | StokOrderByWithRelationInput[]
-    cursor?: StokWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: StokScalarFieldEnum | StokScalarFieldEnum[]
   }
 
   /**
@@ -5611,8 +5543,6 @@ export namespace Prisma {
     is_active: 'is_active',
     created_at: 'created_at',
     updated_at: 'updated_at',
-    auth_provider: 'auth_provider',
-    auth_id: 'auth_id',
     last_login: 'last_login'
   };
 
@@ -5657,6 +5587,14 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
@@ -5671,6 +5609,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -5728,6 +5675,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -5756,8 +5717,6 @@ export namespace Prisma {
     is_active?: BoolFilter<"User"> | boolean
     created_at?: DateTimeFilter<"User"> | Date | string
     updated_at?: DateTimeFilter<"User"> | Date | string
-    auth_provider?: StringNullableFilter<"User"> | string | null
-    auth_id?: StringNullableFilter<"User"> | string | null
     last_login?: DateTimeNullableFilter<"User"> | Date | string | null
   }
 
@@ -5770,8 +5729,6 @@ export namespace Prisma {
     is_active?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
-    auth_provider?: SortOrderInput | SortOrder
-    auth_id?: SortOrderInput | SortOrder
     last_login?: SortOrderInput | SortOrder
   }
 
@@ -5787,8 +5744,6 @@ export namespace Prisma {
     is_active?: BoolFilter<"User"> | boolean
     created_at?: DateTimeFilter<"User"> | Date | string
     updated_at?: DateTimeFilter<"User"> | Date | string
-    auth_provider?: StringNullableFilter<"User"> | string | null
-    auth_id?: StringNullableFilter<"User"> | string | null
     last_login?: DateTimeNullableFilter<"User"> | Date | string | null
   }, "id_user" | "email">
 
@@ -5801,8 +5756,6 @@ export namespace Prisma {
     is_active?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
-    auth_provider?: SortOrderInput | SortOrder
-    auth_id?: SortOrderInput | SortOrder
     last_login?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
@@ -5823,8 +5776,6 @@ export namespace Prisma {
     is_active?: BoolWithAggregatesFilter<"User"> | boolean
     created_at?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"User"> | Date | string
-    auth_provider?: StringNullableWithAggregatesFilter<"User"> | string | null
-    auth_id?: StringNullableWithAggregatesFilter<"User"> | string | null
     last_login?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   }
 
@@ -5845,12 +5796,12 @@ export namespace Prisma {
 
   export type KategoriWhereUniqueInput = Prisma.AtLeast<{
     id_kategori?: number
+    nama_kategori?: string
     AND?: KategoriWhereInput | KategoriWhereInput[]
     OR?: KategoriWhereInput[]
     NOT?: KategoriWhereInput | KategoriWhereInput[]
-    nama_kategori?: StringFilter<"Kategori"> | string
     Produk?: ProdukListRelationFilter
-  }, "id_kategori">
+  }, "id_kategori" | "nama_kategori">
 
   export type KategoriOrderByWithAggregationInput = {
     id_kategori?: SortOrder
@@ -5878,10 +5829,10 @@ export namespace Prisma {
     id_kategori?: IntFilter<"Produk"> | number
     nama_produk?: StringFilter<"Produk"> | string
     kode_produk?: StringFilter<"Produk"> | string
-    foto_produk?: StringFilter<"Produk"> | string
+    foto_produk?: JsonNullableFilter<"Produk">
     tgl_register?: DateTimeFilter<"Produk"> | Date | string
     kategori?: XOR<KategoriScalarRelationFilter, KategoriWhereInput>
-    Stok?: StokListRelationFilter
+    stok?: XOR<StokNullableScalarRelationFilter, StokWhereInput> | null
   }
 
   export type ProdukOrderByWithRelationInput = {
@@ -5889,10 +5840,10 @@ export namespace Prisma {
     id_kategori?: SortOrder
     nama_produk?: SortOrder
     kode_produk?: SortOrder
-    foto_produk?: SortOrder
+    foto_produk?: SortOrderInput | SortOrder
     tgl_register?: SortOrder
     kategori?: KategoriOrderByWithRelationInput
-    Stok?: StokOrderByRelationAggregateInput
+    stok?: StokOrderByWithRelationInput
   }
 
   export type ProdukWhereUniqueInput = Prisma.AtLeast<{
@@ -5903,10 +5854,10 @@ export namespace Prisma {
     NOT?: ProdukWhereInput | ProdukWhereInput[]
     id_kategori?: IntFilter<"Produk"> | number
     nama_produk?: StringFilter<"Produk"> | string
-    foto_produk?: StringFilter<"Produk"> | string
+    foto_produk?: JsonNullableFilter<"Produk">
     tgl_register?: DateTimeFilter<"Produk"> | Date | string
     kategori?: XOR<KategoriScalarRelationFilter, KategoriWhereInput>
-    Stok?: StokListRelationFilter
+    stok?: XOR<StokNullableScalarRelationFilter, StokWhereInput> | null
   }, "id_produk" | "kode_produk">
 
   export type ProdukOrderByWithAggregationInput = {
@@ -5914,7 +5865,7 @@ export namespace Prisma {
     id_kategori?: SortOrder
     nama_produk?: SortOrder
     kode_produk?: SortOrder
-    foto_produk?: SortOrder
+    foto_produk?: SortOrderInput | SortOrder
     tgl_register?: SortOrder
     _count?: ProdukCountOrderByAggregateInput
     _avg?: ProdukAvgOrderByAggregateInput
@@ -5931,7 +5882,7 @@ export namespace Prisma {
     id_kategori?: IntWithAggregatesFilter<"Produk"> | number
     nama_produk?: StringWithAggregatesFilter<"Produk"> | string
     kode_produk?: StringWithAggregatesFilter<"Produk"> | string
-    foto_produk?: StringWithAggregatesFilter<"Produk"> | string
+    foto_produk?: JsonNullableWithAggregatesFilter<"Produk">
     tgl_register?: DateTimeWithAggregatesFilter<"Produk"> | Date | string
   }
 
@@ -5956,14 +5907,14 @@ export namespace Prisma {
 
   export type StokWhereUniqueInput = Prisma.AtLeast<{
     id_stok?: number
+    id_produk?: number
     AND?: StokWhereInput | StokWhereInput[]
     OR?: StokWhereInput[]
     NOT?: StokWhereInput | StokWhereInput[]
-    id_produk?: IntFilter<"Stok"> | number
     jumlah_barang?: IntFilter<"Stok"> | number
     tgl_update?: DateTimeFilter<"Stok"> | Date | string
     produk?: XOR<ProdukScalarRelationFilter, ProdukWhereInput>
-  }, "id_stok">
+  }, "id_stok" | "id_produk">
 
   export type StokOrderByWithAggregationInput = {
     id_stok?: SortOrder
@@ -5995,8 +5946,6 @@ export namespace Prisma {
     is_active?: boolean
     created_at?: Date | string
     updated_at?: Date | string
-    auth_provider?: string | null
-    auth_id?: string | null
     last_login?: Date | string | null
   }
 
@@ -6009,8 +5958,6 @@ export namespace Prisma {
     is_active?: boolean
     created_at?: Date | string
     updated_at?: Date | string
-    auth_provider?: string | null
-    auth_id?: string | null
     last_login?: Date | string | null
   }
 
@@ -6022,8 +5969,6 @@ export namespace Prisma {
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    auth_provider?: NullableStringFieldUpdateOperationsInput | string | null
-    auth_id?: NullableStringFieldUpdateOperationsInput | string | null
     last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
@@ -6036,8 +5981,6 @@ export namespace Prisma {
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    auth_provider?: NullableStringFieldUpdateOperationsInput | string | null
-    auth_id?: NullableStringFieldUpdateOperationsInput | string | null
     last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
@@ -6050,8 +5993,6 @@ export namespace Prisma {
     is_active?: boolean
     created_at?: Date | string
     updated_at?: Date | string
-    auth_provider?: string | null
-    auth_id?: string | null
     last_login?: Date | string | null
   }
 
@@ -6063,8 +6004,6 @@ export namespace Prisma {
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    auth_provider?: NullableStringFieldUpdateOperationsInput | string | null
-    auth_id?: NullableStringFieldUpdateOperationsInput | string | null
     last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
@@ -6077,8 +6016,6 @@ export namespace Prisma {
     is_active?: BoolFieldUpdateOperationsInput | boolean
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    auth_provider?: NullableStringFieldUpdateOperationsInput | string | null
-    auth_id?: NullableStringFieldUpdateOperationsInput | string | null
     last_login?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
@@ -6121,10 +6058,10 @@ export namespace Prisma {
   export type ProdukCreateInput = {
     nama_produk: string
     kode_produk: string
-    foto_produk: string
+    foto_produk?: NullableJsonNullValueInput | InputJsonValue
     tgl_register: Date | string
     kategori: KategoriCreateNestedOneWithoutProdukInput
-    Stok?: StokCreateNestedManyWithoutProdukInput
+    stok?: StokCreateNestedOneWithoutProdukInput
   }
 
   export type ProdukUncheckedCreateInput = {
@@ -6132,18 +6069,18 @@ export namespace Prisma {
     id_kategori: number
     nama_produk: string
     kode_produk: string
-    foto_produk: string
+    foto_produk?: NullableJsonNullValueInput | InputJsonValue
     tgl_register: Date | string
-    Stok?: StokUncheckedCreateNestedManyWithoutProdukInput
+    stok?: StokUncheckedCreateNestedOneWithoutProdukInput
   }
 
   export type ProdukUpdateInput = {
     nama_produk?: StringFieldUpdateOperationsInput | string
     kode_produk?: StringFieldUpdateOperationsInput | string
-    foto_produk?: StringFieldUpdateOperationsInput | string
+    foto_produk?: NullableJsonNullValueInput | InputJsonValue
     tgl_register?: DateTimeFieldUpdateOperationsInput | Date | string
     kategori?: KategoriUpdateOneRequiredWithoutProdukNestedInput
-    Stok?: StokUpdateManyWithoutProdukNestedInput
+    stok?: StokUpdateOneWithoutProdukNestedInput
   }
 
   export type ProdukUncheckedUpdateInput = {
@@ -6151,9 +6088,9 @@ export namespace Prisma {
     id_kategori?: IntFieldUpdateOperationsInput | number
     nama_produk?: StringFieldUpdateOperationsInput | string
     kode_produk?: StringFieldUpdateOperationsInput | string
-    foto_produk?: StringFieldUpdateOperationsInput | string
+    foto_produk?: NullableJsonNullValueInput | InputJsonValue
     tgl_register?: DateTimeFieldUpdateOperationsInput | Date | string
-    Stok?: StokUncheckedUpdateManyWithoutProdukNestedInput
+    stok?: StokUncheckedUpdateOneWithoutProdukNestedInput
   }
 
   export type ProdukCreateManyInput = {
@@ -6161,14 +6098,14 @@ export namespace Prisma {
     id_kategori: number
     nama_produk: string
     kode_produk: string
-    foto_produk: string
+    foto_produk?: NullableJsonNullValueInput | InputJsonValue
     tgl_register: Date | string
   }
 
   export type ProdukUpdateManyMutationInput = {
     nama_produk?: StringFieldUpdateOperationsInput | string
     kode_produk?: StringFieldUpdateOperationsInput | string
-    foto_produk?: StringFieldUpdateOperationsInput | string
+    foto_produk?: NullableJsonNullValueInput | InputJsonValue
     tgl_register?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -6177,7 +6114,7 @@ export namespace Prisma {
     id_kategori?: IntFieldUpdateOperationsInput | number
     nama_produk?: StringFieldUpdateOperationsInput | string
     kode_produk?: StringFieldUpdateOperationsInput | string
-    foto_produk?: StringFieldUpdateOperationsInput | string
+    foto_produk?: NullableJsonNullValueInput | InputJsonValue
     tgl_register?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -6308,8 +6245,6 @@ export namespace Prisma {
     is_active?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
-    auth_provider?: SortOrder
-    auth_id?: SortOrder
     last_login?: SortOrder
   }
 
@@ -6326,8 +6261,6 @@ export namespace Prisma {
     is_active?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
-    auth_provider?: SortOrder
-    auth_id?: SortOrder
     last_login?: SortOrder
   }
 
@@ -6340,8 +6273,6 @@ export namespace Prisma {
     is_active?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
-    auth_provider?: SortOrder
-    auth_id?: SortOrder
     last_login?: SortOrder
   }
 
@@ -6469,20 +6400,38 @@ export namespace Prisma {
   export type KategoriSumOrderByAggregateInput = {
     id_kategori?: SortOrder
   }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type KategoriScalarRelationFilter = {
     is?: KategoriWhereInput
     isNot?: KategoriWhereInput
   }
 
-  export type StokListRelationFilter = {
-    every?: StokWhereInput
-    some?: StokWhereInput
-    none?: StokWhereInput
-  }
-
-  export type StokOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type StokNullableScalarRelationFilter = {
+    is?: StokWhereInput | null
+    isNot?: StokWhereInput | null
   }
 
   export type ProdukCountOrderByAggregateInput = {
@@ -6504,7 +6453,6 @@ export namespace Prisma {
     id_kategori?: SortOrder
     nama_produk?: SortOrder
     kode_produk?: SortOrder
-    foto_produk?: SortOrder
     tgl_register?: SortOrder
   }
 
@@ -6513,13 +6461,38 @@ export namespace Prisma {
     id_kategori?: SortOrder
     nama_produk?: SortOrder
     kode_produk?: SortOrder
-    foto_produk?: SortOrder
     tgl_register?: SortOrder
   }
 
   export type ProdukSumOrderByAggregateInput = {
     id_produk?: SortOrder
     id_kategori?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
   export type ProdukScalarRelationFilter = {
@@ -6636,18 +6609,16 @@ export namespace Prisma {
     connect?: KategoriWhereUniqueInput
   }
 
-  export type StokCreateNestedManyWithoutProdukInput = {
-    create?: XOR<StokCreateWithoutProdukInput, StokUncheckedCreateWithoutProdukInput> | StokCreateWithoutProdukInput[] | StokUncheckedCreateWithoutProdukInput[]
-    connectOrCreate?: StokCreateOrConnectWithoutProdukInput | StokCreateOrConnectWithoutProdukInput[]
-    createMany?: StokCreateManyProdukInputEnvelope
-    connect?: StokWhereUniqueInput | StokWhereUniqueInput[]
+  export type StokCreateNestedOneWithoutProdukInput = {
+    create?: XOR<StokCreateWithoutProdukInput, StokUncheckedCreateWithoutProdukInput>
+    connectOrCreate?: StokCreateOrConnectWithoutProdukInput
+    connect?: StokWhereUniqueInput
   }
 
-  export type StokUncheckedCreateNestedManyWithoutProdukInput = {
-    create?: XOR<StokCreateWithoutProdukInput, StokUncheckedCreateWithoutProdukInput> | StokCreateWithoutProdukInput[] | StokUncheckedCreateWithoutProdukInput[]
-    connectOrCreate?: StokCreateOrConnectWithoutProdukInput | StokCreateOrConnectWithoutProdukInput[]
-    createMany?: StokCreateManyProdukInputEnvelope
-    connect?: StokWhereUniqueInput | StokWhereUniqueInput[]
+  export type StokUncheckedCreateNestedOneWithoutProdukInput = {
+    create?: XOR<StokCreateWithoutProdukInput, StokUncheckedCreateWithoutProdukInput>
+    connectOrCreate?: StokCreateOrConnectWithoutProdukInput
+    connect?: StokWhereUniqueInput
   }
 
   export type KategoriUpdateOneRequiredWithoutProdukNestedInput = {
@@ -6658,32 +6629,24 @@ export namespace Prisma {
     update?: XOR<XOR<KategoriUpdateToOneWithWhereWithoutProdukInput, KategoriUpdateWithoutProdukInput>, KategoriUncheckedUpdateWithoutProdukInput>
   }
 
-  export type StokUpdateManyWithoutProdukNestedInput = {
-    create?: XOR<StokCreateWithoutProdukInput, StokUncheckedCreateWithoutProdukInput> | StokCreateWithoutProdukInput[] | StokUncheckedCreateWithoutProdukInput[]
-    connectOrCreate?: StokCreateOrConnectWithoutProdukInput | StokCreateOrConnectWithoutProdukInput[]
-    upsert?: StokUpsertWithWhereUniqueWithoutProdukInput | StokUpsertWithWhereUniqueWithoutProdukInput[]
-    createMany?: StokCreateManyProdukInputEnvelope
-    set?: StokWhereUniqueInput | StokWhereUniqueInput[]
-    disconnect?: StokWhereUniqueInput | StokWhereUniqueInput[]
-    delete?: StokWhereUniqueInput | StokWhereUniqueInput[]
-    connect?: StokWhereUniqueInput | StokWhereUniqueInput[]
-    update?: StokUpdateWithWhereUniqueWithoutProdukInput | StokUpdateWithWhereUniqueWithoutProdukInput[]
-    updateMany?: StokUpdateManyWithWhereWithoutProdukInput | StokUpdateManyWithWhereWithoutProdukInput[]
-    deleteMany?: StokScalarWhereInput | StokScalarWhereInput[]
+  export type StokUpdateOneWithoutProdukNestedInput = {
+    create?: XOR<StokCreateWithoutProdukInput, StokUncheckedCreateWithoutProdukInput>
+    connectOrCreate?: StokCreateOrConnectWithoutProdukInput
+    upsert?: StokUpsertWithoutProdukInput
+    disconnect?: StokWhereInput | boolean
+    delete?: StokWhereInput | boolean
+    connect?: StokWhereUniqueInput
+    update?: XOR<XOR<StokUpdateToOneWithWhereWithoutProdukInput, StokUpdateWithoutProdukInput>, StokUncheckedUpdateWithoutProdukInput>
   }
 
-  export type StokUncheckedUpdateManyWithoutProdukNestedInput = {
-    create?: XOR<StokCreateWithoutProdukInput, StokUncheckedCreateWithoutProdukInput> | StokCreateWithoutProdukInput[] | StokUncheckedCreateWithoutProdukInput[]
-    connectOrCreate?: StokCreateOrConnectWithoutProdukInput | StokCreateOrConnectWithoutProdukInput[]
-    upsert?: StokUpsertWithWhereUniqueWithoutProdukInput | StokUpsertWithWhereUniqueWithoutProdukInput[]
-    createMany?: StokCreateManyProdukInputEnvelope
-    set?: StokWhereUniqueInput | StokWhereUniqueInput[]
-    disconnect?: StokWhereUniqueInput | StokWhereUniqueInput[]
-    delete?: StokWhereUniqueInput | StokWhereUniqueInput[]
-    connect?: StokWhereUniqueInput | StokWhereUniqueInput[]
-    update?: StokUpdateWithWhereUniqueWithoutProdukInput | StokUpdateWithWhereUniqueWithoutProdukInput[]
-    updateMany?: StokUpdateManyWithWhereWithoutProdukInput | StokUpdateManyWithWhereWithoutProdukInput[]
-    deleteMany?: StokScalarWhereInput | StokScalarWhereInput[]
+  export type StokUncheckedUpdateOneWithoutProdukNestedInput = {
+    create?: XOR<StokCreateWithoutProdukInput, StokUncheckedCreateWithoutProdukInput>
+    connectOrCreate?: StokCreateOrConnectWithoutProdukInput
+    upsert?: StokUpsertWithoutProdukInput
+    disconnect?: StokWhereInput | boolean
+    delete?: StokWhereInput | boolean
+    connect?: StokWhereUniqueInput
+    update?: XOR<XOR<StokUpdateToOneWithWhereWithoutProdukInput, StokUpdateWithoutProdukInput>, StokUncheckedUpdateWithoutProdukInput>
   }
 
   export type ProdukCreateNestedOneWithoutStokInput = {
@@ -6873,22 +6836,45 @@ export namespace Prisma {
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type ProdukCreateWithoutKategoriInput = {
     nama_produk: string
     kode_produk: string
-    foto_produk: string
+    foto_produk?: NullableJsonNullValueInput | InputJsonValue
     tgl_register: Date | string
-    Stok?: StokCreateNestedManyWithoutProdukInput
+    stok?: StokCreateNestedOneWithoutProdukInput
   }
 
   export type ProdukUncheckedCreateWithoutKategoriInput = {
     id_produk?: number
     nama_produk: string
     kode_produk: string
-    foto_produk: string
+    foto_produk?: NullableJsonNullValueInput | InputJsonValue
     tgl_register: Date | string
-    Stok?: StokUncheckedCreateNestedManyWithoutProdukInput
+    stok?: StokUncheckedCreateNestedOneWithoutProdukInput
   }
 
   export type ProdukCreateOrConnectWithoutKategoriInput = {
@@ -6925,7 +6911,7 @@ export namespace Prisma {
     id_kategori?: IntFilter<"Produk"> | number
     nama_produk?: StringFilter<"Produk"> | string
     kode_produk?: StringFilter<"Produk"> | string
-    foto_produk?: StringFilter<"Produk"> | string
+    foto_produk?: JsonNullableFilter<"Produk">
     tgl_register?: DateTimeFilter<"Produk"> | Date | string
   }
 
@@ -6959,11 +6945,6 @@ export namespace Prisma {
     create: XOR<StokCreateWithoutProdukInput, StokUncheckedCreateWithoutProdukInput>
   }
 
-  export type StokCreateManyProdukInputEnvelope = {
-    data: StokCreateManyProdukInput | StokCreateManyProdukInput[]
-    skipDuplicates?: boolean
-  }
-
   export type KategoriUpsertWithoutProdukInput = {
     update: XOR<KategoriUpdateWithoutProdukInput, KategoriUncheckedUpdateWithoutProdukInput>
     create: XOR<KategoriCreateWithoutProdukInput, KategoriUncheckedCreateWithoutProdukInput>
@@ -6984,36 +6965,32 @@ export namespace Prisma {
     nama_kategori?: StringFieldUpdateOperationsInput | string
   }
 
-  export type StokUpsertWithWhereUniqueWithoutProdukInput = {
-    where: StokWhereUniqueInput
+  export type StokUpsertWithoutProdukInput = {
     update: XOR<StokUpdateWithoutProdukInput, StokUncheckedUpdateWithoutProdukInput>
     create: XOR<StokCreateWithoutProdukInput, StokUncheckedCreateWithoutProdukInput>
+    where?: StokWhereInput
   }
 
-  export type StokUpdateWithWhereUniqueWithoutProdukInput = {
-    where: StokWhereUniqueInput
+  export type StokUpdateToOneWithWhereWithoutProdukInput = {
+    where?: StokWhereInput
     data: XOR<StokUpdateWithoutProdukInput, StokUncheckedUpdateWithoutProdukInput>
   }
 
-  export type StokUpdateManyWithWhereWithoutProdukInput = {
-    where: StokScalarWhereInput
-    data: XOR<StokUpdateManyMutationInput, StokUncheckedUpdateManyWithoutProdukInput>
+  export type StokUpdateWithoutProdukInput = {
+    jumlah_barang?: IntFieldUpdateOperationsInput | number
+    tgl_update?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type StokScalarWhereInput = {
-    AND?: StokScalarWhereInput | StokScalarWhereInput[]
-    OR?: StokScalarWhereInput[]
-    NOT?: StokScalarWhereInput | StokScalarWhereInput[]
-    id_stok?: IntFilter<"Stok"> | number
-    id_produk?: IntFilter<"Stok"> | number
-    jumlah_barang?: IntFilter<"Stok"> | number
-    tgl_update?: DateTimeFilter<"Stok"> | Date | string
+  export type StokUncheckedUpdateWithoutProdukInput = {
+    id_stok?: IntFieldUpdateOperationsInput | number
+    jumlah_barang?: IntFieldUpdateOperationsInput | number
+    tgl_update?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProdukCreateWithoutStokInput = {
     nama_produk: string
     kode_produk: string
-    foto_produk: string
+    foto_produk?: NullableJsonNullValueInput | InputJsonValue
     tgl_register: Date | string
     kategori: KategoriCreateNestedOneWithoutProdukInput
   }
@@ -7023,7 +7000,7 @@ export namespace Prisma {
     id_kategori: number
     nama_produk: string
     kode_produk: string
-    foto_produk: string
+    foto_produk?: NullableJsonNullValueInput | InputJsonValue
     tgl_register: Date | string
   }
 
@@ -7046,7 +7023,7 @@ export namespace Prisma {
   export type ProdukUpdateWithoutStokInput = {
     nama_produk?: StringFieldUpdateOperationsInput | string
     kode_produk?: StringFieldUpdateOperationsInput | string
-    foto_produk?: StringFieldUpdateOperationsInput | string
+    foto_produk?: NullableJsonNullValueInput | InputJsonValue
     tgl_register?: DateTimeFieldUpdateOperationsInput | Date | string
     kategori?: KategoriUpdateOneRequiredWithoutProdukNestedInput
   }
@@ -7056,7 +7033,7 @@ export namespace Prisma {
     id_kategori?: IntFieldUpdateOperationsInput | number
     nama_produk?: StringFieldUpdateOperationsInput | string
     kode_produk?: StringFieldUpdateOperationsInput | string
-    foto_produk?: StringFieldUpdateOperationsInput | string
+    foto_produk?: NullableJsonNullValueInput | InputJsonValue
     tgl_register?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -7064,56 +7041,33 @@ export namespace Prisma {
     id_produk?: number
     nama_produk: string
     kode_produk: string
-    foto_produk: string
+    foto_produk?: NullableJsonNullValueInput | InputJsonValue
     tgl_register: Date | string
   }
 
   export type ProdukUpdateWithoutKategoriInput = {
     nama_produk?: StringFieldUpdateOperationsInput | string
     kode_produk?: StringFieldUpdateOperationsInput | string
-    foto_produk?: StringFieldUpdateOperationsInput | string
+    foto_produk?: NullableJsonNullValueInput | InputJsonValue
     tgl_register?: DateTimeFieldUpdateOperationsInput | Date | string
-    Stok?: StokUpdateManyWithoutProdukNestedInput
+    stok?: StokUpdateOneWithoutProdukNestedInput
   }
 
   export type ProdukUncheckedUpdateWithoutKategoriInput = {
     id_produk?: IntFieldUpdateOperationsInput | number
     nama_produk?: StringFieldUpdateOperationsInput | string
     kode_produk?: StringFieldUpdateOperationsInput | string
-    foto_produk?: StringFieldUpdateOperationsInput | string
+    foto_produk?: NullableJsonNullValueInput | InputJsonValue
     tgl_register?: DateTimeFieldUpdateOperationsInput | Date | string
-    Stok?: StokUncheckedUpdateManyWithoutProdukNestedInput
+    stok?: StokUncheckedUpdateOneWithoutProdukNestedInput
   }
 
   export type ProdukUncheckedUpdateManyWithoutKategoriInput = {
     id_produk?: IntFieldUpdateOperationsInput | number
     nama_produk?: StringFieldUpdateOperationsInput | string
     kode_produk?: StringFieldUpdateOperationsInput | string
-    foto_produk?: StringFieldUpdateOperationsInput | string
+    foto_produk?: NullableJsonNullValueInput | InputJsonValue
     tgl_register?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type StokCreateManyProdukInput = {
-    id_stok?: number
-    jumlah_barang: number
-    tgl_update: Date | string
-  }
-
-  export type StokUpdateWithoutProdukInput = {
-    jumlah_barang?: IntFieldUpdateOperationsInput | number
-    tgl_update?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type StokUncheckedUpdateWithoutProdukInput = {
-    id_stok?: IntFieldUpdateOperationsInput | number
-    jumlah_barang?: IntFieldUpdateOperationsInput | number
-    tgl_update?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type StokUncheckedUpdateManyWithoutProdukInput = {
-    id_stok?: IntFieldUpdateOperationsInput | number
-    jumlah_barang?: IntFieldUpdateOperationsInput | number
-    tgl_update?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

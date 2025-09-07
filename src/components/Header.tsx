@@ -1,16 +1,11 @@
 import React from "react";
-import {
-	Layout,
-	Typography,
-	Avatar,
-	Dropdown,
-	Space,
-	Modal,
-} from "antd";
+import { Layout, Typography, Avatar, Dropdown, Space, Modal, Flex, Button } from "antd";
 import {
 	UserOutlined,
 	SettingOutlined,
 	LogoutOutlined,
+	MenuUnfoldOutlined,
+	MenuFoldOutlined,
 } from "@ant-design/icons";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -20,6 +15,8 @@ const { Title } = Typography;
 
 interface HeaderProps {
 	title: string;
+	collapsed: boolean;
+	onCollapsed: () => void;
 }
 
 /**
@@ -29,38 +26,25 @@ interface HeaderProps {
  * @param {function} toggleSidebar - Function to toggle sidebar visibility on mobile
  * @returns {React.FC} The Header component
  */
-const Header: React.FC<HeaderProps> = ({ title }) => {
-	const { data:session } = useSession();
+const Header: React.FC<HeaderProps> = ({ title, collapsed, onCollapsed }) => {
+	const { data: session } = useSession();
 	const router = useRouter();
 
 	const userMenuItems = [
-		{
-			key: "profile",
-			label: "Profil Saya",
-			icon: <UserOutlined />,
-			onClick: () => {
-				router.push('/dashboard/profile');
-			}
-		},
-		{
-			key: "settings",
-			label: "Pengaturan Akun",
-			icon: <SettingOutlined />,
-		},
 		{
 			key: "logout",
 			label: "Keluar",
 			icon: <LogoutOutlined />,
 			onClick: () => {
 				Modal.confirm({
-					title: 'Konfirmasi Keluar',
-					content: 'Apakah Anda yakin ingin keluar dari aplikasi?',
-					okText: 'Ya, Keluar',
-					cancelText: 'Batal',
+					title: "Konfirmasi Keluar",
+					content: "Apakah Anda yakin ingin keluar dari aplikasi?",
+					okText: "Ya, Keluar",
+					cancelText: "Batal",
 					okButtonProps: { danger: true },
 					onOk: () => signOut(),
 				});
-			}
+			},
 		},
 	];
 
@@ -68,7 +52,7 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
 		<AntHeader
 			style={{
 				background: "#fff",
-				padding: "0 24px",
+				padding: "0px",
 				boxShadow: "0 1px 4px rgba(0,21,41,.08)",
 				position: "sticky",
 				top: 0,
@@ -78,9 +62,23 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
 				justifyContent: "space-between",
 			}}
 		>
-			<Title level={4} style={{ margin: 0 }}>
-				{title}
-			</Title>
+			<Flex gap="small" align="center">
+				<Button
+					type="text"
+					icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+					onClick={onCollapsed}
+					style={{
+						fontSize: "16px",
+						width: 64,
+						height: 64,
+					}}
+				/>
+
+				<Title level={4} style={{ margin: 0 }}>
+					{title}
+				</Title>
+			</Flex>
+
 			{/* User Profile */}
 			<Dropdown
 				menu={{ items: userMenuItems }}
@@ -88,7 +86,7 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
 				arrow
 				trigger={["click"]}
 			>
-				<Space className="cursor-pointer">
+				<Space className="cursor-pointer me-8">
 					<Avatar icon={<UserOutlined />} />
 					<span className="hidden md:inline">{session?.user.name}</span>
 				</Space>
