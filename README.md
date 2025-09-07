@@ -111,7 +111,6 @@ stokku-app/
 │   ├── helpers/              # Utility functions
 │   ├── layouts/              # Page layouts
 │   ├── services/             # API service layers
-│   ├── stores/               # State management
 │   └── types/                # TypeScript type definitions
 ├── prisma/                   # Database schema and migrations
 ├── public/                   # Static assets
@@ -125,12 +124,6 @@ stokku-app/
 2. **Add Products**: Register new products with images and details
 3. **Manage Stock**: Adjust stock levels as inventory changes
 4. **Generate Reports**: Export inventory data to Excel or PDF
-
-### For Warehouse Staff
-1. **View Inventory**: Check current stock levels across all products
-2. **Update Stock**: Record incoming/outgoing stock changes
-3. **Search Products**: Quickly find products using search functionality
-4. **Monitor Alerts**: Stay informed about low stock situations
 
 ## 🔧 API Endpoints
 
