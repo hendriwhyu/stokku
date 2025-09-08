@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
 				padding: 0,
 				height: "64px",
 			}}>
-			<div className="container mx-auto px-4 h-full flex items-center justify-between">
+			<div className="container mx-auto h-full flex items-center justify-between">
 				{/* Logo and Brand */}
 				<div className="flex items-center">
 					<Link href="/">

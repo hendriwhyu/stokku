@@ -8,5 +8,4 @@ export default {
         path: path.join("prisma", "migrations"),
         seed: "tsx prisma/seed.ts",
     },
-    
 } satisfies PrismaConfig;

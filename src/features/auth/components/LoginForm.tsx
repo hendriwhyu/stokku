@@ -94,12 +94,6 @@ const LoginForm: React.FC = () => {
 						>
 							Ingat saya
 						</Checkbox>
-						<Link
-							href="/auth/forgot-password"
-							className="text-indigo-600 hover:text-indigo-700"
-						>
-							Lupa kata sandi?
-						</Link>
 					</div>
 				</Form.Item>
 

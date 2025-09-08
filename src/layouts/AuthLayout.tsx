@@ -61,7 +61,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
 					{/* Content */}
 					<div className="relative z-10 max-w-xl px-10 text-white">
 						<h2 className="text-3xl xl:text-4xl font-semibold leading-snug">
-							Kelola stok dan operasional toko buku Anda dengan lebih mudah.
+							Kelola stok dan operasional toko anda dengan lebih mudah.
 						</h2>
 						<p className="mt-4 text-white/80">
 							Masuk untuk mengakses dashboard, memantau performa penjualan, dan

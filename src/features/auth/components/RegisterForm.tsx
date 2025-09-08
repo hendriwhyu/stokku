@@ -148,7 +148,7 @@ const RegisterForm: React.FC = () => {
 					>
 						Saya menyetujui{" "}
 						<Link
-							href="/terms"
+							href="#"
 							className="text-indigo-600 hover:text-indigo-700"
 						>
 							syarat dan ketentuan

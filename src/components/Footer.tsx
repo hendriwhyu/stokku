@@ -33,8 +33,7 @@ const Footer: React.FC = () => {
 						</Title>
 					</div>
 					<Paragraph style={{ color: "rgba(255,255,255,0.65)" }}>
-						Platform manajemen inventaris buku terbaik untuk toko buku dan
-						perpustakaan di Indonesia
+						Platform manajemen inventaris buku terbaik untuk toko anda
 					</Paragraph>
 					<div className="flex mt-4">
 						<a
